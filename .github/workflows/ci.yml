@@ -1,0 +1,20 @@
+name: external-consumer
+on: [push, pull_request]
+jobs:
+  pure-go:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Djunichi/gopdsdk
+          path: PlayDateSDK
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.x'
+      - run: go mod edit -replace github.com/Djunichi/gopdsdk=./PlayDateSDK
+      - run: go test ./...
+      - run: go vet ./...

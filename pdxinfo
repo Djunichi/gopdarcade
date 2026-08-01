@@ -1,0 +1,6 @@
+name=Crank Courier
+author=gopdsdk
+description=A polished crank-controlled delivery arcade
+bundleID=dev.gopdsdk.crank-courier
+version=0.1.0
+buildNumber=1
